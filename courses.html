@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0055a5;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #003366;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+        .card p {
+            text-align: left;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .button {
+            background-color: #0055a5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #003366;
+        }
+        .counter {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <header>
+        <h1>Courses</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('add_course') }}">Add Course</a>
+    </nav>
+    <div class="container">
+        <div class="counter">
+            <p>Total People Joined: <span id="joinCounter">0</span></p>
+        </div>
+        {% for course in courses %}
+        <div class="card animate__animated animate__fadeIn">
+            <img src="{{ url_for('static', filename='images/course_image.png') }}" alt="Course Image">
+            <h3>{{ course.name }}</h3>
+            <p>{{ course.description }}</p>
+        </div>
+        {% endfor %}
+        <div class="card animate__animated animate__fadeIn">
+            <img src="{{ url_for('static', filename='images/course_image.png') }}" alt="Course Image">
+            <h3>Lecție 1</h3>
+            <p>Implantarea raioanelor într-un spațiu de vânzare este esențială pentru optimizarea fluxului de clienți și maximizarea vânzărilor. Acest proces implică mai multe etape și factori de luat în considerare:</p>
+            <p>Alocarea spațiului: Se urmărește alocarea mai mult spațiu raioanelor care generează mai multe vânzări sau profit pe metru pătrat. Analiza se face comparativ pe grupe de produse sau în relație cu alte magazine similare.</p>
+            <p>Amplasarea raioanelor: În magazinele cu un singur nivel, este crucial să se identifice zonele de circulație naturală (zone calde) și cele de circulație incitată (zone reci). Raioanele cu mare atractivitate ar trebui amplasate astfel încât să dirijeze clienții prin întreaga sală de vânzare, evitând concentrarea excesivă în anumite zone.</p>
+            <p>Implementarea detaliată: Se iau în considerare frecvența de cumpărare a marfurilor pentru a decide amplasamentele. Produsele de mare cerere ar trebui plasate în puncte strategice pentru a atrage clienții să traverseze întreaga zonă de vânzare. Acest lucru implică trei faze succesive de abordare: determinarea amplasamentelor raioanelor de foarte mare atractie, urmată de cele de cerere curentă și, în final, a celor de impuls.</p>
+            <p>Metodologia de implementare: Este important să se asigure o prezentare echilibrată a stocurilor de marfuri care să corespundă cerințelor clientelei și să faciliteze alegerea produselor. Aici intervine și conceptul de flux tehnologic al depozitului, care trebuie să fie coerent cu amenajarea raioanelor pentru a asigura eficiența în aprovizionare și manipulare a mărfurilor.</p>
+            <p>Studii de caz specifice: Un exemplu concret este magazinul Altex, unde s-a observat o divizare a spațiului de vânzare în raioane specifice pentru produse electronice, electrocasnice și accesorii, fiecare având o cota din volumul vânzărilor și fiind plasate strategic în funcție de fluxul clienților și atractivitatea produselor.</p>
+            <p>Aceste strategii nu doar că optimizează utilizarea spațiului, dar și contribuie la o experiență de cumpărare mai plăcută și eficientă pentru clienți.</p>
+        </div>
+        <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Education Platform</p>
+    </footer>
+    <script>
+        let joinCounter = 0;
+        function enroll() {
+            alert("Thank you for enrolling!");
+            joinCounter++;
+            document.getElementById('joinCounter').innerText = joinCounter;
+        }
+    </script>
+</body>
+</html>
